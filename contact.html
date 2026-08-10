@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — FASESIF</title>
+<meta name="description" content="Contactez la FASESIF pour toute question concernant les candidatures, nos programmes d'excellence et les opportunités de partenariat.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="index.html" class="site-header__logo">FASESIF</a>
+    <nav class="site-nav" data-nav>
+      <a class="site-nav__link" href="index.html">Accueil</a>
+      <a class="site-nav__link" href="a-propos.html">À Propos</a>
+      <a class="site-nav__link" href="candidature.html">Candidature</a>
+      <a class="site-nav__link" href="contact.html" aria-current="page">Contact</a>
+      <a class="btn btn-primary" href="candidature.html">Postuler</a>
+    </nav>
+    <div class="site-header__actions">
+      <a class="btn btn-primary" href="candidature.html">Postuler</a>
+      <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Ouvrir le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h1 class="headline-lg">Contactez-nous</h1>
+        <p class="body-lg" style="max-width:620px; color:var(--color-on-surface-variant);">Nous sommes à votre disposition pour répondre à toutes vos questions concernant les candidatures, nos programmes d'excellence, et les opportunités de partenariat.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="card">
+          <h2 class="headline-md" style="font-size:22px; margin-bottom:28px;">Nos Coordonnées</h2>
+
+          <div class="contact-item">
+            <span class="contact-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
+            </span>
+            <div>
+              <p class="label-caps contact-item__label">Siège Social</p>
+              <p class="body-md">15 Place Vendôme<br>75001 Paris, France</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 6.5 12 13l8-6.5"/></svg>
+            </span>
+            <div>
+              <p class="label-caps contact-item__label">Adresses Électroniques</p>
+              <p class="body-md">Candidatures :<br><a href="mailto:candidatures@fasesif.org">candidatures@fasesif.org</a></p>
+              <p class="body-md" style="margin-top:10px;">Partenariats :<br><a href="mailto:partenariats@fasesif.org">partenariats@fasesif.org</a></p>
+            </div>
+          </div>
+
+          <div class="contact-item" style="margin-bottom:0;">
+            <span class="contact-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.6 10.8c1.4 2.7 3.6 4.9 6.3 6.3l2.1-2.1c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.6c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1L6.6 10.8Z"/></svg>
+            </span>
+            <div>
+              <p class="label-caps contact-item__label">Téléphone</p>
+              <p class="body-md">+33 1 80 00 00 00</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="headline-md" style="font-size:22px; margin-bottom:28px;">Envoyer un Message</h2>
+
+          <form data-contact-form novalidate>
+            <div class="field-row">
+              <div class="field">
+                <label class="field__label" for="c-nom">Nom Complet</label>
+                <input class="field__input" type="text" id="c-nom" name="nom" placeholder="Jean Dupont" required>
+              </div>
+              <div class="field">
+                <label class="field__label" for="c-email">Email</label>
+                <input class="field__input" type="email" id="c-email" name="email" placeholder="jean.dupont@exemple.com" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="c-objet">Objet</label>
+              <select class="field__select" id="c-objet" name="objet" required>
+                <option value="" selected disabled>Sélectionnez un sujet</option>
+                <option value="candidature">Candidature</option>
+                <option value="partenariat">Partenariat</option>
+                <option value="presse">Presse</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="c-message">Message</label>
+              <textarea class="field__textarea" id="c-message" name="message" placeholder="Comment pouvons-nous vous aider ?" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+              Envoyer le Message
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </button>
+
+            <p class="body-md" data-form-feedback hidden style="margin-top:16px; color:var(--color-secondary);"></p>
+          </form>
+        </div>
+      </div>
+
+      <div class="map-panel section-gap-top" role="img" aria-label="Carte du quartier de la Place Vendôme à Paris, localisant le siège de la FASESIF.">
+        <div class="map-pin">
+          <p style="display:flex; align-items:center; gap:10px; font-weight:600; margin-bottom:8px;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" style="color:var(--color-primary);"><rect x="3.5" y="7" width="17" height="13" rx="1.5"/><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7"/></svg>
+            FASESIF Paris
+          </p>
+          <p class="body-md" style="font-size:14px; color:var(--color-on-surface-variant); margin-bottom:12px;">Situé au cœur du quartier historique, incarnant l'excellence académique.</p>
+          <a href="#" class="label-caps" style="color:var(--color-primary); display:inline-flex; align-items:center; gap:6px;">
+            Obtenir l'itinéraire
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__top">
+    <div class="site-footer__brand">
+      <a href="index.html" class="site-header__logo">FASESIF</a>
+      <p class="body-md site-footer__desc">© 2024 FASESIF. Tous droits réservés. Faire rayonner l'excellence ivoirienne.</p>
+      <div class="site-footer__social">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6.94 8.5a1.44 1.44 0 1 0 0-2.88 1.44 1.44 0 0 0 0 2.88ZM5.5 10.5h2.9V18H5.5v-7.5ZM10.5 10.5h2.78v1.03h.04c.39-.7 1.33-1.44 2.74-1.44 2.93 0 3.47 1.83 3.47 4.22V18h-2.9v-3.24c0-.77-.02-1.77-1.08-1.77-1.08 0-1.25.82-1.25 1.71V18h-2.8v-7.5Z"/></svg> LinkedIn</a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9h2V6h-2c-1.66 0-3 1.34-3 3v2H9v3h2v6h3v-6h2.2l.8-3H14V9c0-.28.22-.5.5-.5H14Z"/></svg> Facebook</a>
+      </div>
+    </div>
+    <div class="site-footer__links">
+      <a class="body-md" href="mentions-legales.html">Mentions Légales</a>
+      <a class="body-md" href="confidentialite.html">Confidentialité</a>
+    </div>
+  </div>
+  <div class="site-footer__bottom">
+    <div class="container">© 2024 FASESIF. Tous droits réservés.</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

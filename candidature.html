@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candidature — Gala de l'Excellence Ivoirienne | FASESIF</title>
+<meta name="description" content="Déposez votre candidature pour le Gala de l'Excellence Ivoirienne, le 03 octobre 2026 à Paris.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="index.html" class="site-header__logo">FASESIF</a>
+    <nav class="site-nav" data-nav>
+      <a class="site-nav__link" href="index.html">Accueil</a>
+      <a class="site-nav__link" href="a-propos.html">À Propos</a>
+      <a class="site-nav__link" href="candidature.html" aria-current="page">Candidature</a>
+      <a class="site-nav__link" href="contact.html">Contact</a>
+      <a class="btn btn-primary" href="candidature.html">Postuler</a>
+    </nav>
+    <div class="site-header__actions">
+      <a class="btn btn-primary" href="candidature.html">Postuler</a>
+      <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Ouvrir le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero hero--candidature hero--compact">
+    <div class="hero__content">
+      <span class="chip chip--dark hero__eyebrow">03 OCT. 2026</span>
+      <h1 class="headline-lg hero__title" style="font-family:var(--font-display); font-size:56px;">Gala de l'Excellence Ivoirienne</h1>
+      <p class="body-lg hero__desc">Célébrer la brillance, le leadership et l'impact de la diaspora ivoirienne en France. Rejoignez-nous pour une soirée de prestige.</p>
+      <div class="hero__actions">
+        <a href="#form" class="btn btn-secondary" style="background:var(--color-surface); color:var(--color-primary);">Déposer sa candidature →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="form">
+    <div class="container">
+      <div class="candidature-grid">
+        <div>
+          <span class="chip chip--secondary" style="margin-bottom:20px;">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 17c4.5-3 7-6.4 7-10a7 7 0 1 0-14 0c0 3.6 2.5 7 7 10Z"/></svg>
+            Édition 2026
+          </span>
+          <h2 class="headline-lg" style="margin-bottom:20px;">Dépôt de Candidature</h2>
+          <p class="body-md" style="color:var(--color-on-surface-variant); max-width:420px;">Soumettez votre profil pour être considéré lors de la prochaine cérémonie des Awards de l'Excellence. Assurez-vous que vos documents sont à jour et reflètent fidèlement votre parcours académique ou professionnel.</p>
+
+          <div class="criteria-list">
+            <div class="criteria-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 10.8 15 16 9"/></svg>
+              <p class="body-md">Ouvert à tous les étudiants ivoiriens en France.</p>
+            </div>
+            <div class="criteria-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 10.8 15 16 9"/></svg>
+              <p class="body-md">Critères de sélection stricts basés sur le mérite.</p>
+            </div>
+          </div>
+
+          <p class="body-md" style="margin-top:32px; font-size:14px; color:var(--color-outline);">Un formulaire plus détaillé (parcours académique et motivation) vous sera proposé à l'étape suivante. <a href="candidature-dossier.html" style="color:var(--color-primary); text-decoration:underline;">Accéder directement au dossier complet →</a></p>
+        </div>
+
+        <form class="card" data-simple-candidature-form novalidate>
+          <div class="field">
+            <label class="field__label" for="nom">Nom Complet</label>
+            <input class="field__input" type="text" id="nom" name="nom" placeholder="Jean Dupont" required>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="email">Email</label>
+            <input class="field__input" type="email" id="email" name="email" placeholder="jean.dupont@email.com" required>
+          </div>
+
+          <div class="upload-row">
+            <div class="upload" data-upload tabindex="0" role="button" aria-label="Téléverser votre CV">
+              <label for="cv-upload" style="cursor:pointer; display:block;">
+                <span class="upload__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+                </span>
+                <span class="upload__label" data-upload-label>Téléverser CV</span>
+                <span class="upload__hint" data-upload-hint>PDF, DOCX (Max 5Mo)</span>
+              </label>
+              <input type="file" id="cv-upload" name="cv" accept=".pdf,.docx">
+            </div>
+
+            <div class="upload" data-upload tabindex="0" role="button" aria-label="Téléverser votre relevé de notes">
+              <label for="releve-upload" style="cursor:pointer; display:block;">
+                <span class="upload__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/></svg>
+                </span>
+                <span class="upload__label" data-upload-label>Téléverser Relevé de Notes</span>
+                <span class="upload__hint" data-upload-hint>PDF, JPG (Max 5Mo)</span>
+              </label>
+              <input type="file" id="releve-upload" name="releve" accept=".pdf,.jpg,.jpeg,.png">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-success btn-block">
+            Soumettre
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__top">
+    <div class="site-footer__brand">
+      <a href="index.html" class="site-header__logo">FASESIF</a>
+      <p class="body-md site-footer__desc">Fédération des Amicales de Stagiaires, Étudiants et Scolaires Ivoiriens de France.</p>
+    </div>
+    <div class="site-footer__links">
+      <a class="body-md" href="mentions-legales.html">Mentions Légales</a>
+      <a class="body-md" href="confidentialite.html">Confidentialité</a>
+      <div class="site-footer__social" style="margin-top:4px;">
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6.94 8.5a1.44 1.44 0 1 0 0-2.88 1.44 1.44 0 0 0 0 2.88ZM5.5 10.5h2.9V18H5.5v-7.5ZM10.5 10.5h2.78v1.03h.04c.39-.7 1.33-1.44 2.74-1.44 2.93 0 3.47 1.83 3.47 4.22V18h-2.9v-3.24c0-.77-.02-1.77-1.08-1.77-1.08 0-1.25.82-1.25 1.71V18h-2.8v-7.5Z"/></svg> LinkedIn</a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9h2V6h-2c-1.66 0-3 1.34-3 3v2H9v3h2v6h3v-6h2.2l.8-3H14V9c0-.28.22-.5.5-.5H14Z"/></svg> Facebook</a>
+      </div>
+    </div>
+  </div>
+  <div class="site-footer__bottom">
+    <div class="container">© 2024 FASESIF. Tous droits réservés.</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
