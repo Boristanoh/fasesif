@@ -54,6 +54,66 @@
   .cta-band { flex-direction: column; text-align: center; padding: 36px var(--card-padding-mobile); }
 }
 
+/* ---- Essence du Gala (homepage) ---- */
+
+.essence-top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gutter);
+  align-items: stretch;
+}
+
+@media (max-width: 720px) {
+  .essence-top-grid { grid-template-columns: 1fr; }
+}
+
+.essence-criteres { position: relative; overflow: hidden; }
+
+.essence-programme { padding: var(--card-padding); }
+
+@media (max-width: 720px) { .essence-programme { padding: var(--card-padding-mobile); } }
+
+.programme-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+@media (max-width: 860px) {
+  .programme-grid { grid-template-columns: 1fr; }
+}
+
+.programme-list { display: flex; flex-direction: column; gap: 20px; }
+
+.programme-item { display: flex; align-items: flex-start; gap: 16px; }
+
+.programme-item__number {
+  flex-shrink: 0;
+  width: 34px; height: 34px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-outline-variant);
+  background: var(--color-surface-container-lowest);
+  color: var(--color-primary);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.programme-photo {
+  border-radius: var(--radius-lg);
+  min-height: 320px;
+  height: 100%;
+  background-color: #2b1608;
+  background-image:
+    radial-gradient(circle at 25% 15%, rgba(255, 224, 133, 0.32), transparent 42%),
+    radial-gradient(circle at 80% 75%, rgba(196, 160, 40, 0.28), transparent 45%),
+    linear-gradient(150deg, #422410 0%, #23120a 100%);
+}
+
+@media (max-width: 860px) { .programme-photo { min-height: 240px; } }
+
 /* ---- À propos page ---- */
 
 .about-grid {
