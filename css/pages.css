@@ -102,6 +102,7 @@
 }
 
 .programme-photo {
+  overflow: hidden;
   border-radius: var(--radius-lg);
   min-height: 320px;
   height: 100%;
@@ -332,3 +333,27 @@
 }
 
 .next-step-card__icon svg { width: 20px; height: 20px; }
+
+.hero__bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.programme-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

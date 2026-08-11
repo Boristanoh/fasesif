@@ -1,9 +1,23 @@
 /* ==========================================================================
-   FASESIF — Dossier de candidature — 3-step wizard
+   FASESIF — Dossier de candidature — multi-step wizard (start screen + N steps)
    ========================================================================== */
 
 (function () {
   "use strict";
+
+  /* ---- Intro → wizard handoff ---- */
+  const introScreen = document.querySelector("[data-intro-screen]");
+  const wizardEl = document.querySelector("[data-wizard]");
+
+  document.querySelectorAll("[data-start-wizard]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      if (!wizardEl) return; // no wizard on this page, let the link behave normally
+      e.preventDefault();
+      if (introScreen) introScreen.hidden = true;
+      wizardEl.hidden = false;
+      wizardEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
 
   const steps = Array.from(document.querySelectorAll("[data-step-panel]"));
   const stepperItems = Array.from(document.querySelectorAll("[data-stepper-step]"));

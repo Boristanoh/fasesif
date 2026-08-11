@@ -24,10 +24,10 @@
       <a class="site-nav__link" href="a-propos.html">À Propos</a>
       <a class="site-nav__link" href="candidature.html" aria-current="page">Candidature</a>
       <a class="site-nav__link" href="contact.html">Contact</a>
-      <a class="btn btn-primary" href="candidature.html">Postuler</a>
+      <a class="btn btn-primary" href="#wizard" data-start-wizard>Postuler</a>
     </nav>
     <div class="site-header__actions">
-      <a class="btn btn-primary" href="candidature.html">Postuler</a>
+      <a class="btn btn-primary" href="#wizard" data-start-wizard>Postuler</a>
       <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Ouvrir le menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
@@ -37,85 +37,356 @@
 
 <main id="main">
 
-  <section class="hero hero--candidature hero--compact">
-    <div class="hero__content">
-      <span class="chip chip--dark hero__eyebrow">03 OCT. 2026</span>
-      <h1 class="headline-lg hero__title" style="font-family:var(--font-display); font-size:56px;">Gala de l'Excellence Ivoirienne</h1>
-      <p class="body-lg hero__desc">Célébrer la brillance, le leadership et l'impact de la diaspora ivoirienne en France. Rejoignez-nous pour une soirée de prestige.</p>
-      <div class="hero__actions">
-        <a href="#form" class="btn btn-secondary" style="background:var(--color-surface); color:var(--color-primary);">Déposer sa candidature →</a>
-      </div>
-    </div>
-  </section>
+  <!-- ================= INTRO / LANDING ================= -->
+  <div data-intro-screen>
 
-  <section class="section" id="form">
-    <div class="container">
-      <div class="candidature-grid">
-        <div>
-          <span class="chip chip--secondary" style="margin-bottom:20px;">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 17c4.5-3 7-6.4 7-10a7 7 0 1 0-14 0c0 3.6 2.5 7 7 10Z"/></svg>
-            Édition 2026
-          </span>
-          <h2 class="headline-lg" style="margin-bottom:20px;">Dépôt de Candidature</h2>
-          <p class="body-md" style="color:var(--color-on-surface-variant); max-width:420px;">Soumettez votre profil pour être considéré lors de la prochaine cérémonie des Awards de l'Excellence. Assurez-vous que vos documents sont à jour et reflètent fidèlement votre parcours académique ou professionnel.</p>
-
-          <div class="criteria-list">
-            <div class="criteria-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 10.8 15 16 9"/></svg>
-              <p class="body-md">Ouvert à tous les étudiants ivoiriens en France.</p>
-            </div>
-            <div class="criteria-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 10.8 15 16 9"/></svg>
-              <p class="body-md">Critères de sélection stricts basés sur le mérite.</p>
-            </div>
-          </div>
-
-          <p class="body-md" style="margin-top:32px; font-size:14px; color:var(--color-outline);">Un formulaire plus détaillé (parcours académique et motivation) vous sera proposé à l'étape suivante. <a href="candidature-dossier.html" style="color:var(--color-primary); text-decoration:underline;">Accéder directement au dossier complet →</a></p>
-        </div>
-
-        <form class="card" data-simple-candidature-form novalidate>
-          <div class="field">
-            <label class="field__label" for="nom">Nom Complet</label>
-            <input class="field__input" type="text" id="nom" name="nom" placeholder="Jean Dupont" required>
-          </div>
-
-          <div class="field">
-            <label class="field__label" for="email">Email</label>
-            <input class="field__input" type="email" id="email" name="email" placeholder="jean.dupont@email.com" required>
-          </div>
-
-          <div class="upload-row">
-            <div class="upload" data-upload tabindex="0" role="button" aria-label="Téléverser votre CV">
-              <label for="cv-upload" style="cursor:pointer; display:block;">
-                <span class="upload__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
-                </span>
-                <span class="upload__label" data-upload-label>Téléverser CV</span>
-                <span class="upload__hint" data-upload-hint>PDF, DOCX (Max 5Mo)</span>
-              </label>
-              <input type="file" id="cv-upload" name="cv" accept=".pdf,.docx">
-            </div>
-
-            <div class="upload" data-upload tabindex="0" role="button" aria-label="Téléverser votre relevé de notes">
-              <label for="releve-upload" style="cursor:pointer; display:block;">
-                <span class="upload__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/></svg>
-                </span>
-                <span class="upload__label" data-upload-label>Téléverser Relevé de Notes</span>
-                <span class="upload__hint" data-upload-hint>PDF, JPG (Max 5Mo)</span>
-              </label>
-              <input type="file" id="releve-upload" name="releve" accept=".pdf,.jpg,.jpeg,.png">
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-success btn-block">
-            Soumettre
+    <section class="hero hero--candidature hero--compact">
+      <img class="hero__bg-img" src="assets/img/hero-accueil.png" alt="Invités en tenue de soirée dans une salle de bal parisienne illuminée par des lustres" onerror="this.remove()">
+      <div class="hero__content">
+        <span class="chip chip--dark hero__eyebrow">03 OCT. 2026 — PARIS</span>
+        <h1 class="headline-lg hero__title" style="font-family:var(--font-display); font-size:56px;">Gala de l'Excellence Ivoirienne</h1>
+        <p class="body-lg hero__desc">Célébrer la brillance, le leadership et l'impact de la diaspora ivoirienne en France. Rejoignez-nous pour une soirée de prestige.</p>
+        <div class="hero__actions">
+          <button type="button" class="btn btn-secondary" style="background:var(--color-surface); color:var(--color-primary);" data-start-wizard>
+            Commencer ma candidature
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
           </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="candidature-grid">
+          <div>
+            <span class="chip chip--secondary" style="margin-bottom:20px;">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 17c4.5-3 7-6.4 7-10a7 7 0 1 0-14 0c0 3.6 2.5 7 7 10Z"/></svg>
+              Édition 2026
+            </span>
+            <h2 class="headline-lg" style="margin-bottom:20px;">Dépôt de Candidature</h2>
+            <p class="body-md" style="color:var(--color-on-surface-variant); max-width:420px;">Soumettez votre profil pour être considéré lors de la prochaine cérémonie des Awards de l'Excellence. Le dossier se remplit en quatre étapes rapides : vos informations, votre parcours académique, vos documents, puis votre motivation.</p>
+
+            <div class="criteria-list">
+              <div class="criteria-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 10.8 15 16 9"/></svg>
+                <p class="body-md">Ouvert à tous les étudiants et jeunes professionnels ivoiriens en France.</p>
+              </div>
+              <div class="criteria-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 10.8 15 16 9"/></svg>
+                <p class="body-md">Critères de sélection stricts basés sur le mérite.</p>
+              </div>
+              <div class="criteria-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 10.8 15 16 9"/></svg>
+                <p class="body-md">Comptez environ 10 minutes pour compléter votre dossier.</p>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" style="margin-top:32px;" data-start-wizard>
+              Commencer ma candidature
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </button>
+          </div>
+
+          <div class="card">
+            <h3 class="headline-md" style="font-size:20px; margin-bottom:20px;">Les 4 étapes du dossier</h3>
+
+            <div class="programme-list">
+              <div class="programme-item">
+                <span class="programme-item__number">01</span>
+                <div>
+                  <p class="body-md" style="font-weight:600; color:var(--color-primary);">Informations Personnelles</p>
+                  <p class="body-md" style="color:var(--color-on-surface-variant); font-size:14px;">Vos coordonnées et votre situation actuelle.</p>
+                </div>
+              </div>
+              <div class="programme-item">
+                <span class="programme-item__number">02</span>
+                <div>
+                  <p class="body-md" style="font-weight:600; color:var(--color-primary);">Parcours Académique</p>
+                  <p class="body-md" style="color:var(--color-on-surface-variant); font-size:14px;">Filière, niveau d'étude et résultats.</p>
+                </div>
+              </div>
+              <div class="programme-item">
+                <span class="programme-item__number">03</span>
+                <div>
+                  <p class="body-md" style="font-weight:600; color:var(--color-primary);">Documents</p>
+                  <p class="body-md" style="color:var(--color-on-surface-variant); font-size:14px;">CV, relevé de notes et justificatif d'identité.</p>
+                </div>
+              </div>
+              <div class="programme-item">
+                <span class="programme-item__number">04</span>
+                <div>
+                  <p class="body-md" style="font-weight:600; color:var(--color-primary);">Motivation</p>
+                  <p class="body-md" style="color:var(--color-on-surface-variant); font-size:14px;">Votre lettre de motivation et la validation finale.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ================= WIZARD (4 étapes) ================= -->
+  <div data-wizard hidden id="wizard">
+    <div class="container">
+      <div class="wizard-shell">
+
+        <div style="text-align:center; margin-top:24px;">
+          <span class="label-caps" style="color:var(--color-primary);">GALA IVOIRE</span>
+          <h1 class="headline-lg" data-step-heading style="margin-top:12px;">Informations Personnelles</h1>
+          <p class="body-lg" style="color:var(--color-on-surface-variant); margin-top:14px;" data-step-subheading>Commençons par quelques informations pour vous identifier.</p>
+        </div>
+
+        <div class="stepper stepper--4">
+          <div class="stepper__step" data-stepper-step>
+            <div class="stepper__circle">
+              <span data-step-number>1</span>
+              <svg data-step-check viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" hidden><polyline points="5 13 10 18 19 7"/></svg>
+            </div>
+            <span class="stepper__label">1. Informations</span>
+          </div>
+          <div class="stepper__line" data-stepper-line></div>
+          <div class="stepper__step" data-stepper-step>
+            <div class="stepper__circle">
+              <span data-step-number>2</span>
+              <svg data-step-check viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" hidden><polyline points="5 13 10 18 19 7"/></svg>
+            </div>
+            <span class="stepper__label">2. Académique</span>
+          </div>
+          <div class="stepper__line" data-stepper-line></div>
+          <div class="stepper__step" data-stepper-step>
+            <div class="stepper__circle">
+              <span data-step-number>3</span>
+              <svg data-step-check viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" hidden><polyline points="5 13 10 18 19 7"/></svg>
+            </div>
+            <span class="stepper__label">3. Documents</span>
+          </div>
+          <div class="stepper__line" data-stepper-line></div>
+          <div class="stepper__step" data-stepper-step>
+            <div class="stepper__circle">
+              <span data-step-number>4</span>
+              <svg data-step-check viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" hidden><polyline points="5 13 10 18 19 7"/></svg>
+            </div>
+            <span class="stepper__label">4. Motivation</span>
+          </div>
+        </div>
+
+        <form data-wizard-form>
+          <div class="card">
+
+            <!-- ---- STEP 1 : Informations personnelles ---- -->
+            <div data-step-panel data-title="Informations Personnelles" data-subtitle="Commençons par quelques informations pour vous identifier.">
+              <div class="field-row">
+                <div class="field">
+                  <label class="field__label" for="prenom">Prénom</label>
+                  <input class="field__input" type="text" id="prenom" name="prenom" placeholder="Aya" required>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="nomf">Nom</label>
+                  <input class="field__input" type="text" id="nomf" name="nom" placeholder="Kouassi" required>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label class="field__label" for="emailf">Email</label>
+                  <input class="field__input" type="email" id="emailf" name="email" placeholder="aya.kouassi@email.com" required>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="tel">Téléphone</label>
+                  <input class="field__input" type="tel" id="tel" name="telephone" placeholder="+33 6 00 00 00 00" required>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label class="field__label" for="naissance">Date de naissance</label>
+                  <input class="field__input" type="date" id="naissance" name="date_naissance" required>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="ville">Ville de résidence</label>
+                  <input class="field__input" type="text" id="ville" name="ville" placeholder="Paris, France" required>
+                </div>
+              </div>
+              <div class="field">
+                <label class="field__label" for="statut">Statut actuel</label>
+                <select class="field__select" id="statut" name="statut" required>
+                  <option value="" selected disabled>Sélectionnez votre statut</option>
+                  <option value="etudiant">Étudiant(e)</option>
+                  <option value="jeune-pro">Jeune professionnel(le)</option>
+                  <option value="doctorant">Doctorant(e)</option>
+                </select>
+              </div>
+
+              <div class="wizard-panel-footer">
+                <span></span>
+                <button type="button" class="btn btn-primary" data-next-step>
+                  Suivant
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- ---- STEP 2 : Parcours académique ---- -->
+            <div data-step-panel hidden data-title="Parcours Académique" data-subtitle="Veuillez fournir les informations relatives à votre parcours universitaire actuel.">
+              <div class="field-row">
+                <div class="field">
+                  <label class="field__label" for="filiere">Filière d'étude</label>
+                  <input class="field__input" type="text" id="filiere" name="filiere" placeholder="Ex: Master Finance" required>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="annee">Année</label>
+                  <select class="field__select" id="annee" name="annee" required>
+                    <option value="" selected disabled>Sélectionnez votre niveau</option>
+                    <option value="licence1">Licence 1</option>
+                    <option value="licence2">Licence 2</option>
+                    <option value="licence3">Licence 3</option>
+                    <option value="master1">Master 1</option>
+                    <option value="master2">Master 2</option>
+                    <option value="doctorat">Doctorat</option>
+                    <option value="jeune-pro">Jeune professionnel</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="etablissement">Établissement</label>
+                <input class="field__input" type="text" id="etablissement" name="etablissement" placeholder="Ex: Sorbonne Université" required>
+              </div>
+
+              <div class="field" style="max-width:340px;">
+                <label class="field__label" for="moyenne">Moyenne (S1/S2)</label>
+                <input class="field__input" type="text" id="moyenne" name="moyenne" placeholder="Ex: 14.50" required>
+              </div>
+
+              <div class="wizard-panel-footer">
+                <button type="button" class="btn btn-ghost" data-prev-step>Retour</button>
+                <button type="button" class="btn btn-primary" data-next-step>
+                  Suivant
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- ---- STEP 3 : Documents ---- -->
+            <div data-step-panel hidden data-title="Documents Requis" data-subtitle="Téléversez les pièces nécessaires à l'étude de votre dossier.">
+              <div class="upload-row" style="grid-template-columns:1fr 1fr 1fr;">
+                <div class="upload" data-upload tabindex="0" role="button" aria-label="Téléverser votre CV">
+                  <label for="w-cv" style="cursor:pointer; display:block;">
+                    <span class="upload__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+                    </span>
+                    <span class="upload__label" data-upload-label style="font-size:13px; text-transform:none; letter-spacing:0; font-weight:600;">Téléverser CV</span>
+                    <span class="upload__hint" data-upload-hint>PDF, DOCX, max 2Mo</span>
+                  </label>
+                  <input type="file" id="w-cv" name="cv" accept=".pdf,.docx" required>
+                </div>
+
+                <div class="upload" data-upload tabindex="0" role="button" aria-label="Téléverser votre relevé de notes">
+                  <label for="w-releve" style="cursor:pointer; display:block;">
+                    <span class="upload__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/></svg>
+                    </span>
+                    <span class="upload__label" data-upload-label style="font-size:13px; text-transform:none; letter-spacing:0; font-weight:600;">Téléverser Relevé de Notes</span>
+                    <span class="upload__hint" data-upload-hint>PDF, max 2Mo</span>
+                  </label>
+                  <input type="file" id="w-releve" name="releve_notes" accept=".pdf" required>
+                </div>
+
+                <div class="upload" data-upload tabindex="0" role="button" aria-label="Téléverser votre justificatif d'identité">
+                  <label for="w-identite" style="cursor:pointer; display:block;">
+                    <span class="upload__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.6-1.6 1.9-2.4 3-2.4s2.4.8 3 2.4"/><line x1="14.5" y1="9.5" x2="18" y2="9.5"/><line x1="14.5" y1="12.5" x2="18" y2="12.5"/></svg>
+                    </span>
+                    <span class="upload__label" data-upload-label style="font-size:13px; text-transform:none; letter-spacing:0; font-weight:600;">Téléverser Justificatif d'Identité</span>
+                    <span class="upload__hint" data-upload-hint>PDF/IMG, max 2Mo</span>
+                  </label>
+                  <input type="file" id="w-identite" name="justificatif_identite" accept=".pdf,.jpg,.jpeg,.png" required>
+                </div>
+              </div>
+
+              <div class="wizard-panel-footer">
+                <button type="button" class="btn btn-ghost" data-prev-step>Retour</button>
+                <button type="button" class="btn btn-primary" data-next-step>
+                  Suivant
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- ---- STEP 4 : Motivation ---- -->
+            <div data-step-panel hidden data-title="Votre Motivation" data-subtitle="Partagez ce qui fait de vous un candidat ou une candidate exceptionnel(le).">
+              <div class="field">
+                <label class="field__label" for="motivation">Lettre de motivation</label>
+                <textarea class="field__textarea" id="motivation" name="lettre_motivation" style="min-height:220px;" placeholder="Expliquez ce qui motive votre candidature au Prix d'Excellence : votre parcours, vos réalisations et vos ambitions." required></textarea>
+              </div>
+
+              <label style="display:flex; align-items:flex-start; gap:12px; margin-top:8px; cursor:pointer;">
+                <input type="checkbox" name="engagement" required style="margin-top:4px;">
+                <span class="body-md" style="font-size:14px; color:var(--color-on-surface-variant);">Je certifie l'exactitude des informations fournies et j'autorise la FASESIF à utiliser mon dossier dans le cadre du processus de sélection du Prix d'Excellence.</span>
+              </label>
+
+              <div class="wizard-panel-footer">
+                <button type="button" class="btn btn-ghost" data-prev-step>Retour</button>
+                <button type="button" class="btn btn-primary" data-next-step>
+                  Soumettre le dossier
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 12 10 17 19 6"/></svg>
+                </button>
+              </div>
+            </div>
+
+          </div>
         </form>
       </div>
     </div>
-  </section>
+
+    <p class="wizard-help"><a href="contact.html" style="color:inherit; text-decoration:underline;">Besoin d'aide ?</a></p>
+  </div>
+
+  <!-- ================= SUCCESS SCREEN ================= -->
+  <div data-success-screen hidden>
+    <div class="container">
+      <div class="success-shell">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 13 10 18 19 7"/></svg>
+        </div>
+        <h1 class="headline-lg">Soumission Réussie</h1>
+        <p class="body-lg" style="color:var(--color-on-surface-variant); margin-top:14px;">Votre dossier est complet. Nous allons l'étudier.</p>
+
+        <button type="button" class="btn btn-primary" data-download-recap style="margin-top:32px; background:linear-gradient(135deg, var(--color-accent-gold), var(--color-primary-container));">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M4 19h16"/></svg>
+          Télécharger Récapitulatif
+        </button>
+
+        <div style="border-top:1px solid var(--color-outline-variant); margin-top:48px; padding-top:24px;">
+          <p class="label-caps" style="color:var(--color-primary); text-align:center; margin-bottom:24px;">Prochaines Étapes</p>
+
+          <div class="next-steps-grid">
+            <div class="next-step-card">
+              <div class="next-step-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.4" y2="16.4"/></svg>
+              </div>
+              <p class="headline-md" style="font-size:19px; margin-bottom:8px;">1. Étude du Dossier</p>
+              <p class="body-md" style="color:var(--color-on-surface-variant); font-size:15px;">Notre comité évalue votre candidature avec attention.</p>
+            </div>
+            <div class="next-step-card">
+              <div class="next-step-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 6.5 12 13l8-6.5"/></svg>
+              </div>
+              <p class="headline-md" style="font-size:19px; margin-bottom:8px;">2. Annonce des Résultats</p>
+              <p class="body-md" style="color:var(--color-on-surface-variant); font-size:15px;">Vous recevrez une notification par email de notre décision finale.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="index.html" class="btn btn-ghost" style="margin-top:48px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="11 6 5 12 11 18"/></svg>
+          Retour à l'accueil
+        </a>
+
+        <p class="label-caps" style="color:var(--color-outline); margin-top:40px;">03 OCT. 2026</p>
+      </div>
+    </div>
+  </div>
 
 </main>
 
@@ -140,5 +411,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/wizard.js"></script>
 </body>
 </html>
