@@ -75,18 +75,65 @@
     });
   });
 
-  /* ---- Contact form: lightweight client-side handling ---- */
+  /* ---- Contact form: send to Google Sheets via Apps Script (see config.js) ---- */
   const contactForm = document.querySelector("[data-contact-form]");
   if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
+    contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       const feedback = contactForm.querySelector("[data-form-feedback]");
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const url = (window.FASESIF_CONFIG && window.FASESIF_CONFIG.APPS_SCRIPT_URL) || "";
+
       if (feedback) {
         feedback.hidden = false;
-        feedback.textContent = "Merci, votre message a bien été envoyé. Nous revenons vers vous sous 48h.";
+        feedback.style.color = "";
       }
-      contactForm.reset();
-      contactForm.querySelectorAll(".has-file").forEach((z) => z.classList.remove("has-file"));
+
+      if (!url) {
+        if (feedback) {
+          feedback.style.color = "var(--color-error)";
+          feedback.textContent = "Le site n'est pas encore connecté à Google Sheets. Configurez js/config.js (voir README.md).";
+        }
+        return;
+      }
+
+      const formData = new FormData(contactForm);
+      const payload = {
+        formType: "contact",
+        secret: (window.FASESIF_CONFIG && window.FASESIF_CONFIG.APPS_SCRIPT_SECRET) || "",
+      };
+      formData.forEach((value, key) => {
+        payload[key] = value;
+      });
+
+      const originalBtnText = submitBtn ? submitBtn.innerHTML : "";
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span> Envoi en cours…';
+      }
+
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload),
+        });
+        const json = await res.json();
+        if (!json.success) throw new Error(json.error || "Échec de l'envoi.");
+
+        if (feedback) feedback.textContent = "Merci, votre message a bien été envoyé. Nous revenons vers vous sous 48h.";
+        contactForm.reset();
+      } catch (err) {
+        if (feedback) {
+          feedback.style.color = "var(--color-error)";
+          feedback.textContent = "Votre message n'a pas pu être envoyé (" + err.message + "). Réessayez ou écrivez-nous directement par email.";
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+        }
+      }
     });
   }
 

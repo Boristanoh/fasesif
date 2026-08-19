@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candidature — Prix Meilleure Association | FASESIF</title>
+<meta name="description" content="Déposez la candidature de votre association au Prix Meilleure Association du GEEIF 3.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Aller au contenu</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="index.html" class="site-header__logo">FASESIF</a>
+    <nav class="site-nav" data-nav>
+      <a class="site-nav__link" href="index.html">Accueil</a>
+      <a class="site-nav__link" href="a-propos.html">À Propos</a>
+      <a class="site-nav__link" href="candidature.html" aria-current="page">Candidature</a>
+      <a class="site-nav__link" href="contact.html">Contact</a>
+      <button type="button" class="btn btn-primary" data-start-wizard>Postuler</button>
+    </nav>
+    <div class="site-header__actions">
+      <button type="button" class="btn btn-primary" data-start-wizard>Postuler</button>
+      <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Ouvrir le menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= INTRO / LANDING ================= -->
+  <div data-intro-screen>
+    <section class="hero hero--candidature">
+      <div class="hero__content">
+        <span class="chip chip--dark hero__eyebrow">CATÉGORIE 02 — IMPACT COMMUNAUTAIRE</span>
+        <h1 class="headline-lg hero__title" style="font-family:var(--font-display); font-size:52px;">Prix Meilleure Association</h1>
+        <p class="body-lg hero__desc">Distingue une association étudiante ivoirienne de France pour l'impact concret de ses actions.</p>
+        <div class="hero__actions">
+          <button type="button" class="btn btn-secondary" style="background:var(--color-surface); color:var(--color-primary);" data-start-wizard>
+            Postuler pour mon association
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= WIZARD (4 étapes) ================= -->
+  <div data-wizard hidden id="wizard">
+    <div class="container">
+      <div class="wizard-shell">
+        <a href="candidature.html" class="category-back-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="11 6 5 12 11 18"/></svg>
+          Retour aux catégories
+        </a>
+
+        <div style="text-align:center; margin-top:8px;">
+          <span class="label-caps" style="color:var(--color-primary);">GEEIF 3 · PRIX ASSOCIATION</span>
+          <h1 class="headline-lg" data-step-heading style="margin-top:12px;">Informations</h1>
+          <p class="body-lg" style="color:var(--color-on-surface-variant); margin-top:14px;" data-step-subheading>Tout ce qu'il faut savoir avant de déposer le dossier.</p>
+        </div>
+
+        <div class="stepper stepper--4">
+          <div class="stepper__step" data-stepper-step>
+            <div class="stepper__circle"><span data-step-number>1</span><svg data-step-check viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" hidden><polyline points="5 13 10 18 19 7"/></svg></div>
+            <span class="stepper__label">1. Informations</span>
+          </div>
+          <div class="stepper__line" data-stepper-line></div>
+          <div class="stepper__step" data-stepper-step>
+            <div class="stepper__circle"><span data-step-number>2</span><svg data-step-check viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" hidden><polyline points="5 13 10 18 19 7"/></svg></div>
+            <span class="stepper__label">2. Formulaire</span>
+          </div>
+          <div class="stepper__line" data-stepper-line></div>
+          <div class="stepper__step" data-stepper-step>
+            <div class="stepper__circle"><span data-step-number>3</span><svg data-step-check viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" hidden><polyline points="5 13 10 18 19 7"/></svg></div>
+            <span class="stepper__label">3. Documents</span>
+          </div>
+          <div class="stepper__line" data-stepper-line></div>
+          <div class="stepper__step" data-stepper-step>
+            <div class="stepper__circle"><span data-step-number>4</span><svg data-step-check viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" hidden><polyline points="5 13 10 18 19 7"/></svg></div>
+            <span class="stepper__label">4. Validation</span>
+          </div>
+        </div>
+
+        <form data-wizard-form data-categorie-label="Prix Meilleure Association">
+          <input type="hidden" name="categorie" value="association">
+          <input type="hidden" name="categorie_label" value="Prix Meilleure Association">
+          <input type="text" name="website" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">
+
+          <div class="card">
+
+            <!-- ---- STEP 1 : Informations ---- -->
+            <div data-step-panel data-title="Informations" data-subtitle="Tout ce qu'il faut savoir avant de déposer le dossier.">
+              <p class="body-md" style="color:var(--color-on-surface-variant); margin-bottom:28px;">Le Prix Meilleure Association récompense une association étudiante ivoirienne de France pour la qualité et l'impact concret de ses actions durant l'année écoulée.</p>
+
+              <div class="info-block">
+                <p class="info-block__title">Critères d'éligibilité</p>
+                <div class="criteria-list">
+                  <div class="criteria-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 10.8 15 16 9"/></svg>
+                    <p class="body-md">Association étudiante ivoirienne active en France sur l'année 2024–2025.</p>
+                  </div>
+                  <div class="criteria-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 10.8 15 16 9"/></svg>
+                    <p class="body-md">Capable de présenter 3 à 5 activités phares avec un impact démontré.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-block">
+                <p class="info-block__title">Documents à préparer</p>
+                <div class="programme-list">
+                  <div class="programme-item">
+                    <span class="programme-item__number">01</span>
+                    <div><p class="body-md" style="font-weight:600;">Fichier ZIP — 3 à 5 activités phares 2024–2025</p></div>
+                  </div>
+                  <div class="programme-item">
+                    <span class="programme-item__number">02</span>
+                    <div><p class="body-md" style="font-weight:600;">Justificatifs de chaque activité</p><p class="body-md" style="color:var(--color-on-surface-variant); font-size:14px;">Photos, articles, témoignages, chiffres d'impact.</p></div>
+                  </div>
+                  <div class="programme-item">
+                    <span class="programme-item__number">03</span>
+                    <div><p class="body-md" style="font-weight:600;">Message d'accompagnement</p><p class="body-md" style="color:var(--color-on-surface-variant); font-size:14px;">Facultatif — pour donner du contexte à votre dossier.</p></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-block" style="margin-bottom:0;">
+                <p class="info-block__title">À la clé</p>
+                <div class="reward-row">
+                  <span class="reward-chip">🏆 Trophée</span>
+                  <span class="reward-chip">💶 Somme d'argent</span>
+                </div>
+              </div>
+
+              <div class="wizard-panel-footer">
+                <span></span>
+                <button type="button" class="btn btn-primary" data-next-step>
+                  Suivant
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- ---- STEP 2 : Formulaire ---- -->
+            <div data-step-panel hidden data-title="Formulaire" data-subtitle="Présentez votre association et son contact référent.">
+              <h2 class="headline-md" style="font-size:16px; text-transform:uppercase; letter-spacing:0.06em; color:var(--color-primary); margin-bottom:20px;">Votre association</h2>
+              <div class="field">
+                <label class="field__label" for="nom_association">Nom de l'association</label>
+                <input class="field__input" type="text" id="nom_association" name="nom_association" placeholder="Ex: Amicale des Étudiants Ivoiriens de Lyon" required>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label class="field__label" for="ville">Ville / université de rattachement</label>
+                  <input class="field__input" type="text" id="ville" name="ville" placeholder="Ex: Lyon" required>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="nombre_membres">Nombre de membres actifs</label>
+                  <input class="field__input" type="number" min="1" id="nombre_membres" name="nombre_membres" placeholder="Ex: 45" required>
+                </div>
+              </div>
+
+              <h2 class="headline-md" style="font-size:16px; text-transform:uppercase; letter-spacing:0.06em; color:var(--color-primary); margin-top:32px; margin-bottom:20px;">Personne de contact</h2>
+              <div class="field-row">
+                <div class="field">
+                  <label class="field__label" for="prenom">Prénom</label>
+                  <input class="field__input" type="text" id="prenom" name="prenom" placeholder="Aya" required>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="nom">Nom</label>
+                  <input class="field__input" type="text" id="nom" name="nom" placeholder="Kouassi" required>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label class="field__label" for="email">Email de contact</label>
+                  <input class="field__input" type="email" id="email" name="email" placeholder="contact@association.org" required>
+                </div>
+                <div class="field">
+                  <label class="field__label" for="telephone">Téléphone</label>
+                  <input class="field__input" type="tel" id="telephone" name="telephone" placeholder="+33 6 00 00 00 00" required>
+                </div>
+              </div>
+
+              <div class="wizard-panel-footer">
+                <button type="button" class="btn btn-ghost" data-prev-step>Retour</button>
+                <button type="button" class="btn btn-primary" data-next-step>
+                  Suivant
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- ---- STEP 3 : Documents ---- -->
+            <div data-step-panel hidden data-title="Documents Requis" data-subtitle="Téléversez les pièces nécessaires à l'étude du dossier.">
+              <div class="upload-row" style="grid-template-columns:1fr 1fr;">
+                <div class="upload" data-upload tabindex="0" role="button" aria-label="Téléverser l'archive de vos activités phares">
+                  <label for="doc-activites" style="cursor:pointer; display:block;">
+                    <span class="upload__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 4v16M9 8h3M9 12h3M9 16h3"/></svg></span>
+                    <span class="upload__label" data-upload-label style="font-size:13px; text-transform:none; letter-spacing:0; font-weight:600;">Activités phares (ZIP)</span>
+                    <span class="upload__hint" data-upload-hint>ZIP, max 5Mo</span>
+                  </label>
+                  <input type="file" id="doc-activites" name="activites_phares" accept=".zip" required>
+                </div>
+
+                <div class="upload" data-upload tabindex="0" role="button" aria-label="Téléverser les justificatifs de vos activités">
+                  <label for="doc-justificatifs" style="cursor:pointer; display:block;">
+                    <span class="upload__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/></svg></span>
+                    <span class="upload__label" data-upload-label style="font-size:13px; text-transform:none; letter-spacing:0; font-weight:600;">Justificatifs des activités</span>
+                    <span class="upload__hint" data-upload-hint>PDF ou ZIP, max 5Mo</span>
+                  </label>
+                  <input type="file" id="doc-justificatifs" name="justificatifs_activites" accept=".pdf,.zip" required>
+                </div>
+              </div>
+
+              <div class="field" style="margin-top:24px;">
+                <label class="field__label" for="message_accompagnement">Message d'accompagnement (optionnel)</label>
+                <textarea class="field__textarea" id="message_accompagnement" name="message_accompagnement" style="min-height:140px;" placeholder="Donnez du contexte sur votre association et vos activités."></textarea>
+              </div>
+
+              <div class="wizard-panel-footer">
+                <button type="button" class="btn btn-ghost" data-prev-step>Retour</button>
+                <button type="button" class="btn btn-primary" data-next-step>
+                  Suivant
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- ---- STEP 4 : Validation ---- -->
+            <div data-step-panel hidden data-title="Validation" data-subtitle="Relisez le dossier avant de le soumettre.">
+              <p class="body-md" style="color:var(--color-on-surface-variant); margin-bottom:24px;">Vérifiez que le nom de l'association et le contact référent sont corrects avant de soumettre — ils seront utilisés pour toute communication ultérieure.</p>
+
+              <label style="display:flex; align-items:flex-start; gap:12px; margin-top:8px; cursor:pointer;">
+                <input type="checkbox" name="engagement" required style="margin-top:4px;">
+                <span class="body-md" style="font-size:14px; color:var(--color-on-surface-variant);">Je certifie être habilité·e à représenter cette association et l'exactitude des informations fournies.</span>
+              </label>
+
+              <div class="wizard-panel-footer">
+                <button type="button" class="btn btn-ghost" data-prev-step>Retour</button>
+                <button type="button" class="btn btn-primary" data-next-step>
+                  Soumettre la candidature
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 12 10 17 19 6"/></svg>
+                </button>
+              </div>
+
+              <p class="form-error" data-submit-error hidden role="alert"></p>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <p class="wizard-help"><a href="contact.html" style="color:inherit; text-decoration:underline;">Besoin d'aide ?</a></p>
+  </div>
+
+  <!-- ================= SUCCESS SCREEN ================= -->
+  <div data-success-screen hidden>
+    <div class="container">
+      <div class="success-shell">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 13 10 18 19 7"/></svg>
+        </div>
+        <h1 class="headline-lg">Soumission Réussie</h1>
+        <p class="body-lg" style="color:var(--color-on-surface-variant); margin-top:14px;">La candidature de votre association au Prix Meilleure Association est complète.</p>
+
+        <button type="button" class="btn btn-primary" data-download-recap style="margin-top:32px; background:linear-gradient(135deg, var(--color-accent-gold), var(--color-primary-container));">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M4 19h16"/></svg>
+          Télécharger Récapitulatif
+        </button>
+
+        <div style="border-top:1px solid var(--color-outline-variant); margin-top:48px; padding-top:24px;">
+          <p class="label-caps" style="color:var(--color-primary); text-align:center; margin-bottom:24px;">Prochaines Étapes</p>
+          <div class="next-steps-grid">
+            <div class="next-step-card">
+              <div class="next-step-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.4" y2="16.4"/></svg></div>
+              <p class="headline-md" style="font-size:19px; margin-bottom:8px;">1. Étude du Dossier</p>
+              <p class="body-md" style="color:var(--color-on-surface-variant); font-size:15px;">Notre comité évalue votre candidature avec attention.</p>
+            </div>
+            <div class="next-step-card">
+              <div class="next-step-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4 6.5 12 13l8-6.5"/></svg></div>
+              <p class="headline-md" style="font-size:19px; margin-bottom:8px;">2. Annonce des Résultats</p>
+              <p class="body-md" style="color:var(--color-on-surface-variant); font-size:15px;">Vous recevrez une notification par email de notre décision finale.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="candidature.html" class="btn btn-ghost" style="margin-top:48px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="11 6 5 12 11 18"/></svg>
+          Retour aux catégories
+        </a>
+
+        <p class="label-caps" style="color:var(--color-outline); margin-top:40px;">03 OCT. 2026</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__top">
+    <div class="site-footer__brand">
+      <a href="index.html" class="site-header__logo">FASESIF</a>
+      <p class="body-md site-footer__desc">Fédération des Amicales de Stagiaires, Étudiants et Scolaires Ivoiriens de France.</p>
+    </div>
+    <div class="site-footer__links">
+      <a class="body-md" href="mentions-legales.html">Mentions Légales</a>
+      <a class="body-md" href="confidentialite.html">Confidentialité</a>
+    </div>
+  </div>
+  <div class="site-footer__bottom">
+    <div class="container">© 2024 FASESIF. Tous droits réservés.</div>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/wizard.js"></script>
+</body>
+</html>

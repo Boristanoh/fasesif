@@ -30,6 +30,19 @@
     linear-gradient(160deg, #3d2010 0%, #22110a 55%, #150c07 100%);
 }
 
+/* Real photo, when present, sits behind the dark overlay (.hero::before)
+   and in front of the CSS gradient fallback above. Drop a file at
+   assets/img/hero-accueil.jpg — no other change needed. If the file is
+   missing, the <img> removes itself on error and the gradient shows through. */
+.hero__bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
 .hero--candidature {
   background-image:
     radial-gradient(circle at 25% 20%, rgba(196, 160, 40, 0.3), transparent 40%),
@@ -102,10 +115,10 @@
 }
 
 .programme-photo {
-  overflow: hidden;
   border-radius: var(--radius-lg);
   min-height: 320px;
   height: 100%;
+  overflow: hidden;
   background-color: #2b1608;
   background-image:
     radial-gradient(circle at 25% 15%, rgba(255, 224, 133, 0.32), transparent 42%),
@@ -113,7 +126,149 @@
     linear-gradient(150deg, #422410 0%, #23120a 100%);
 }
 
+/* Real photo, when present, covers the gradient fallback above.
+   Drop a file at assets/img/programme-diner.jpg — no other change needed. */
+.programme-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 860px) { .programme-photo img { min-height: 240px; } }
+
 @media (max-width: 860px) { .programme-photo { min-height: 240px; } }
+
+/* ---- Category picker (candidature.html) ---- */
+
+.category-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gutter);
+}
+
+@media (max-width: 780px) {
+  .category-grid { grid-template-columns: 1fr; }
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.category-card__number {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-outline);
+  letter-spacing: 0.05em;
+}
+
+.category-card__title {
+  margin-top: 10px;
+  margin-bottom: 14px;
+  font-size: 24px;
+}
+
+.category-card__desc {
+  color: var(--color-on-surface-variant);
+  margin-bottom: 20px;
+}
+
+.category-card__block-title {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+  margin-top: 18px;
+}
+
+.reward-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.reward-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(196, 160, 40, 0.14);
+  border: 1px solid rgba(196, 160, 40, 0.35);
+  color: var(--color-on-tertiary-container);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.category-card__footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-outline-variant);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.category-deadline {
+  font-size: 13px;
+  color: var(--color-outline);
+}
+
+.category-intro-banner {
+  background: var(--color-surface-container-low);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.category-intro-banner__icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-container-lowest);
+  border: 1px solid var(--color-outline-variant);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-primary);
+}
+
+/* ---- Category-specific wizard page: back link + eyebrow ---- */
+
+.category-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-on-surface-variant);
+  margin-bottom: 20px;
+}
+
+.category-back-link svg { width: 14px; height: 14px; }
+
+.info-block {
+  margin-bottom: 28px;
+}
+
+.info-block__title {
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+  margin-bottom: 14px;
+}
 
 /* ---- À propos page ---- */
 
@@ -132,11 +287,21 @@
   border-radius: var(--radius-xl);
   height: 380px;
   margin-top: var(--gutter);
+  overflow: hidden;
   background-color: #2b1608;
   background-image:
     radial-gradient(circle at 30% 20%, rgba(255, 224, 133, 0.3), transparent 40%),
     radial-gradient(circle at 75% 60%, rgba(0, 109, 64, 0.25), transparent 45%),
     linear-gradient(150deg, #3d2010 0%, #201005 100%);
+}
+
+/* Real photo, when present, covers the gradient fallback above.
+   Drop a file at assets/img/about-gala.jpg — no other change needed. */
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .event-tag-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
@@ -333,27 +498,3 @@
 }
 
 .next-step-card__icon svg { width: 20px; height: 20px; }
-
-.hero__bg-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-
-.programme-photo img {
-  width: 100%;
-  height: 100%;
-  min-height: 320px;
-  object-fit: cover;
-  display: block;
-}
-
-.about-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}

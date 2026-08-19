@@ -167,6 +167,33 @@
 
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
 
+.btn-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin 0.7s linear infinite;
+  vertical-align: -2px;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+.form-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--color-error-container);
+  color: var(--color-on-error-container);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
 /* ---- Chips / badges --------------------------------------------------------- */
 
 .chip {
@@ -463,6 +490,17 @@
 }
 .stepper__step.is-active .stepper__label { color: var(--color-primary); }
 
+.stepper--4 { max-width: 760px; gap: 8px; }
+.stepper--4 .stepper__step { min-width: 70px; }
+.stepper--4 .stepper__label { font-size: 10px; letter-spacing: 0.04em; }
+.stepper--4 .stepper__circle { width: 36px; height: 36px; font-size: 14px; }
+
+@media (max-width: 640px) {
+  .stepper--4 { gap: 4px; }
+  .stepper--4 .stepper__label { display: none; }
+  .stepper--4 .stepper__line { min-width: 16px; }
+}
+
 /* ---- Hero (image + overlay) ------------------------------------------------------ */
 
 .hero {
@@ -482,7 +520,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 1;   /* ← ajouté */
+  z-index: 1;
   background:
     linear-gradient(180deg, rgba(28,18,10,0.55) 0%, rgba(28,18,10,0.35) 35%, rgba(20,13,7,0.78) 100%);
 }
