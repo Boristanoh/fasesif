@@ -1,22 +1,22 @@
 /* ==========================================================================
    FASESIF — Dossier de candidature — multi-step wizard (start screen + N steps)
-
-   La soumission finale envoie les données (+ fichiers en base64) à un script
-   Google Apps Script déployé comme application Web, qui les enregistre dans
-   une Google Sheet et téléverse les documents dans Google Drive. Aucun
-   serveur propre n'est nécessaire — voir js/config.js et README.md.
    ========================================================================== */
 
 (function () {
   "use strict";
 
-  /* ---- Intro → wizard handoff ---- */
+  // 1. INITIALISATION EMAILJS
+  if (typeof emailjs !== 'undefined' && typeof EMAILJS_PUBLIC_KEY !== 'undefined') {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }
+
+  // 2. GESTION DE L'ÉCRAN D'ACCUEIL → WIZARD
   const introScreen = document.querySelector("[data-intro-screen]");
   const wizardEl = document.querySelector("[data-wizard]");
 
   document.querySelectorAll("[data-start-wizard]").forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      if (!wizardEl) return; // no wizard on this page, let the link behave normally
+      if (!wizardEl) return;
       e.preventDefault();
       if (introScreen) introScreen.hidden = true;
       wizardEl.hidden = false;
@@ -69,12 +69,11 @@
     }
   }
 
-  /* ---- Helpers: read a <input type="file"> as base64 ---- */
+  // 3. CONVERSION FICHIERS BASE64 (POUR GOOGLE DRIVE)
   function fileToBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = () => {
-        // reader.result looks like "data:<mime>;base64,<data>" — strip the prefix
         const base64 = String(reader.result).split(",")[1] || "";
         resolve(base64);
       };
@@ -91,10 +90,6 @@
       files: {},
     };
 
-    // Generic: any <input type="file"> with a selected file is treated as a
-    // document to upload, whatever its field name — this lets each category
-    // page (étudiant, association, recherche, éloquence) define its own set
-    // of documents without touching this file.
     for (const [key, value] of formData.entries()) {
       if (value instanceof File) {
         if (value.size > 0) {
@@ -113,15 +108,12 @@
     return (window.FASESIF_CONFIG && window.FASESIF_CONFIG.APPS_SCRIPT_URL) || "";
   }
 
-  /* Content-Type: text/plain avoids a CORS preflight (OPTIONS) request,
-     which Google Apps Script Web Apps do not handle. The script itself
-     reads the body as text and JSON.parse()s it — see apps-script/Code.gs */
+  // 4. ENVOI APPS SCRIPT (GOOGLE SHEETS / DRIVE)
   async function sendToAppsScript(payload) {
     const url = getAppsScriptUrl();
     if (!url) {
       throw new Error(
-        "Le site n'est pas encore connecté à Google Sheets/Drive. " +
-        "Configurez l'URL dans js/config.js (voir README.md)."
+        "Le site n'est pas encore connecté à Google Sheets/Drive. Configurez l'URL dans js/config.js."
       );
     }
     const res = await fetch(url, {
@@ -141,7 +133,40 @@
     return json;
   }
 
-  /* ---- Final-step submission (with loading + error UI) ---- */
+  // 5. ENVOI EMAIL DE CONFIRMATION (EMAILJS)
+  async function sendConfirmationEmail(formElement) {
+    if (typeof emailjs === 'undefined' || typeof EMAILJS_SERVICE_ID === 'undefined') {
+      console.warn('EmailJS non configuré.');
+      return false;
+    }
+
+    const formData = new FormData(formElement);
+    const prenom = formData.get('prenom') || '';
+    const nom = formData.get('nom') || '';
+    const fullName = `${prenom} ${nom}`.trim() || 'Candidat·e';
+
+    const templateParams = {
+      user_name: fullName,
+      user_email: formData.get('email'),
+      categorie_label: formData.get('categorie_label'),
+      categorie: formData.get('categorie')
+    };
+
+    try {
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
+      console.log('E-mail de confirmation envoyé !', response.status);
+      return true;
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi EmailJS :', error);
+      return false;
+    }
+  }
+
+  // 6. GESTION DES BOUTONS DE NAVIGATION & SOUMISSION FINALE
   const errorBox = document.querySelector("[data-submit-error]");
 
   function setSubmitLoading(btn, isLoading) {
@@ -174,10 +199,13 @@
   }
 
   document.querySelectorAll("[data-next-step]").forEach((btn) => {
-    btn.addEventListener("click", async () => {
+    btn.addEventListener("click", async (e) => {
+      e.preventDefault();
+
       const panel = steps[current];
       const requiredFields = panel.querySelectorAll("[required]");
       let valid = true;
+
       requiredFields.forEach((field) => {
         if (!field.checkValidity()) {
           valid = false;
@@ -186,22 +214,30 @@
       });
       if (!valid) return;
 
+      // Passage à l'étape suivante si on n'est pas à la dernière étape
       if (current < steps.length - 1) {
         clearSubmitError();
         showStep(current + 1);
         return;
       }
 
-      // ---- Last step: real submission to Google Sheets/Drive ----
+      // SOUMISSION FINALE (Dernière étape)
       clearSubmitError();
       const form = document.querySelector("[data-wizard-form]");
       const successScreen = document.querySelector("[data-success-screen]");
       const wizard = document.querySelector("[data-wizard]");
 
       setSubmitLoading(btn, true);
+
       try {
+        // A. Envoi à Google Sheets & Drive
         const payload = await buildCandidaturePayload(form);
         await sendToAppsScript(payload);
+
+        // B. Envoi du mail de confirmation EmailJS
+        await sendConfirmationEmail(form);
+
+        // C. Affichage de l'écran de succès
         if (wizard && successScreen) {
           wizard.hidden = true;
           successScreen.hidden = false;
@@ -219,13 +255,14 @@
   });
 
   document.querySelectorAll("[data-prev-step]").forEach((btn) => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
       clearSubmitError();
       if (current > 0) showStep(current - 1);
     });
   });
 
-  /* ---- Human-readable labels for the PDF recap (mirrors Code.gs FIELD_LABELS) ---- */
+  // 7. GÉNÉRATION DU RÉCAPITULATIF PDF / TXT
   var RECAP_FIELD_LABELS = {
     prenom: "Prénom",
     nom: "Nom",
@@ -264,8 +301,6 @@
     return RECAP_FIELD_LABELS[key] || String(key).replace(/_/g, " ");
   }
 
-  /* ---- Recap download: nicely formatted PDF (falls back to plain text
-     if the PDF library failed to load, e.g. no internet access) ---- */
   const downloadBtn = document.querySelector("[data-download-recap]");
   if (downloadBtn) {
     downloadBtn.addEventListener("click", () => {
@@ -304,7 +339,7 @@
     const contentWidth = pageWidth - marginX * 2;
 
     function drawHeader() {
-      doc.setFillColor(113, 55, 0); // brand primary #713700
+      doc.setFillColor(113, 55, 0);
       doc.rect(0, 0, pageWidth, 92, "F");
       doc.setTextColor(255, 255, 255);
       doc.setFont("helvetica", "bold");

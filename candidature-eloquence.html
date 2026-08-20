@@ -19,6 +19,8 @@
     margin-left: 2px;
   }
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Aller au contenu</a>
@@ -199,21 +201,24 @@
               </div>
 
               <h2 class="headline-md" style="font-size:16px; text-transform:uppercase; letter-spacing:0.06em; color:var(--color-primary); margin-top:32px; margin-bottom:20px;">Votre intervention</h2>
-              <div class="field">
-                <label class="field__label" for="sous_thematique">Sous-thématique choisie <span class="required-star">*</span></label>
-                <select class="field__select" id="sous_thematique" name="sous_thematique" data-reveals="autre-sous-thematique-field" required onchange="const target = document.getElementById('autre-sous-thematique-field'); const input = document.getElementById('sous_thematique_autre'); if(this.value === 'autre'){ target.hidden = false; input.required = true; } else { target.hidden = true; input.required = false; input.value = ''; }">
-                  <option value="" selected disabled>Sélectionnez</option>
-                  <option value="culturelle">Aspects culturels</option>
-                  <option value="academique">Aspects académiques</option>
-                  <option value="diplomatique">Aspects diplomatiques</option>
-                  <option value="socio-professionnelle">Aspects socio-professionnels</option>
-                  <option value="autre">Autre (précisez)</option>
-                </select>
-              </div>
-              <div class="field" id="autre-sous-thematique-field" hidden>
-                <label class="field__label" for="sous_thematique_autre">Précisez votre thématique <span class="required-star">*</span></label>
-                <input class="field__input" type="text" id="sous_thematique_autre" name="sous_thematique_autre" placeholder="Votre propre angle">
-              </div>
+
+<div class="field">
+  <label class="field__label" for="sous_thematique">Sous-thématique choisie <span class="required-star">*</span></label>
+  <select class="field__select" id="sous_thematique" name="sous_thematique" required>
+    <option value="" selected disabled>Sélectionnez</option>
+    <option value="culturelle">Aspects culturels</option>
+    <option value="academique">Aspects académiques</option>
+    <option value="diplomatique">Aspects diplomatiques</option>
+    <option value="socio-professionnelle">Aspects socio-professionnels</option>
+    <option value="autre">Autre (précisez)</option>
+  </select>
+</div>
+
+<!-- Le champ supplémentaire est masqué par défaut -->
+<div class="field" id="autre-sous-thematique-field" style="display: none;">
+  <label class="field__label" for="sous_thematique_autre">Précisez votre thématique <span class="required-star">*</span></label>
+  <input class="field__input" type="text" id="sous_thematique_autre" name="sous_thematique_autre" placeholder="Votre propre angle">
+</div>
               <div class="field">
                 <label class="field__label" for="resume">Résumé de l'intervention (5 à 8 lignes) <span class="required-star">*</span></label>
                 <textarea class="field__textarea" id="resume" name="resume_intervention" style="min-height:160px;" placeholder="Présentez brièvement l'angle et le message de votre intervention." required></textarea>
@@ -266,7 +271,7 @@
 
               <div class="wizard-panel-footer">
                 <button type="button" class="btn btn-ghost" data-prev-step>Retour</button>
-                <button type="button" class="btn btn-primary" data-next-step>
+                <button type="submit" class="btn btn-primary" data-next-step>
                   Soumettre mon inscription
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 12 10 17 19 6"/></svg>
                 </button>
@@ -373,6 +378,33 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, true);
   });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const selectThematique = document.getElementById('sous_thematique');
+  const fieldAutre = document.getElementById('autre-sous-thematique-field');
+  const inputAutre = document.getElementById('sous_thematique_autre');
+
+  function toggleAutreField() {
+    if (selectThematique.value === 'autre') {
+      // Afficher le champ et le rendre obligatoire
+      fieldAutre.style.display = 'block';
+      inputAutre.required = true;
+    } else {
+      // Masquer le champ, vider sa valeur et enlever l'obligation
+      fieldAutre.style.display = 'none';
+      inputAutre.required = false;
+      inputAutre.value = '';
+    }
+  }
+
+  // Écouter le changement de sélection
+  selectThematique.addEventListener('change', toggleAutreField);
+
+  // Exécuter au chargement pour s'assurer que le champ est bien caché au départ
+  toggleAutreField();
 });
 </script>
 </body>

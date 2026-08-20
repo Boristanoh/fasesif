@@ -18,6 +18,12 @@
    ========================================================================== */
 
 window.FASESIF_CONFIG = {
-  APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxkXHZz9eAqwylg3ThmXFBaC-g8yBrbsysXCSsvASrn5TyfDVpHS_osLLoZdXemiQzf3g/exec",
+  APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzQ5xS3Z7yjWHCc7iiA3WO0W7v0uDAtut1ih8umclhemkVNxItaAnDylfnN80Jy--P3/exec",
   APPS_SCRIPT_SECRET: "cle_test"
 };
+
+
+
+const EMAILJS_SERVICE_ID = "service_bge457s";
+const EMAILJS_TEMPLATE_ID = "template_sz72wcr";
+const EMAILJS_PUBLIC_KEY = "1OGHDJv_xvbX1G90_";
