@@ -74,12 +74,24 @@
 @media (max-width: 860px) {
   .site-nav {
     position: fixed;
-    inset: 73px 0 0 0;
-    background: var(--color-surface);
+    /* On ancre le menu sous le header et il occupe tout le reste de l'écran */
+    top: 100%; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(100vh - 100%);
+    
+    /* Fond parfaitement opaque et z-index au-dessus de tout le contenu de la page */
+    background-color: var(--color-surface, #fcf9f2);
+    z-index: 1000;
+    
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
     padding: 24px var(--margin-mobile);
+    overflow-y: auto; /* Permet de scroller si l'écran est petit */
+
+    /* Animation d'affichage */
     transform: translateY(-8px);
     opacity: 0;
     pointer-events: none;
@@ -98,10 +110,20 @@
     border-bottom: 1px solid var(--color-outline-variant);
   }
 
-  .nav-toggle { display: inline-flex; }
+  .nav-toggle { 
+    display: inline-flex; 
+  }
 
-  .site-header__actions .btn { display: none; }
-  .site-nav .btn { display: inline-flex; margin-top: 12px; }
+  .site-header__actions .btn { 
+    display: none; 
+  }
+  
+  .site-nav .btn { 
+    display: inline-flex; 
+    margin-top: 12px; 
+    width: 100%; /* S'assure que le bouton prend la largeur si besoin */
+    justify-content: center;
+  }
 }
 
 /* ---- Buttons -------------------------------------------------------------- */

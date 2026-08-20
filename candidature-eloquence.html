@@ -12,6 +12,13 @@
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/components.css">
 <link rel="stylesheet" href="css/pages.css">
+<style>
+  .required-star {
+    color: var(--color-error, #d93025);
+    font-weight: bold;
+    margin-left: 2px;
+  }
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Aller au contenu</a>
@@ -162,39 +169,39 @@
               <h2 class="headline-md" style="font-size:16px; text-transform:uppercase; letter-spacing:0.06em; color:var(--color-primary); margin-bottom:20px;">Coordonnées</h2>
               <div class="field-row">
                 <div class="field">
-                  <label class="field__label" for="prenom">Prénom</label>
+                  <label class="field__label" for="prenom">Prénom <span class="required-star">*</span></label>
                   <input class="field__input" type="text" id="prenom" name="prenom" placeholder="Aya" required>
                 </div>
                 <div class="field">
-                  <label class="field__label" for="nom">Nom</label>
+                  <label class="field__label" for="nom">Nom <span class="required-star">*</span></label>
                   <input class="field__input" type="text" id="nom" name="nom" placeholder="Kouassi" required>
                 </div>
               </div>
               <div class="field-row">
                 <div class="field">
-                  <label class="field__label" for="email">Email</label>
+                  <label class="field__label" for="email">Email <span class="required-star">*</span></label>
                   <input class="field__input" type="email" id="email" name="email" placeholder="aya.kouassi@email.com" required>
                 </div>
                 <div class="field">
-                  <label class="field__label" for="telephone">Téléphone</label>
+                  <label class="field__label" for="telephone">Téléphone <span class="required-star">*</span></label>
                   <input class="field__input" type="tel" id="telephone" name="telephone" placeholder="+33 6 00 00 00 00" required>
                 </div>
               </div>
               <div class="field-row">
                 <div class="field">
-                  <label class="field__label" for="etablissement">Établissement</label>
+                  <label class="field__label" for="etablissement">Établissement <span class="required-star">*</span></label>
                   <input class="field__input" type="text" id="etablissement" name="etablissement" placeholder="Ex: Université Paris-Saclay" required>
                 </div>
                 <div class="field">
-                  <label class="field__label" for="filiere">Filière</label>
+                  <label class="field__label" for="filiere">Filière <span class="required-star">*</span></label>
                   <input class="field__input" type="text" id="filiere" name="filiere" placeholder="Ex: Sciences Politiques" required>
                 </div>
               </div>
 
               <h2 class="headline-md" style="font-size:16px; text-transform:uppercase; letter-spacing:0.06em; color:var(--color-primary); margin-top:32px; margin-bottom:20px;">Votre intervention</h2>
               <div class="field">
-                <label class="field__label" for="sous_thematique">Sous-thématique choisie</label>
-                <select class="field__select" id="sous_thematique" name="sous_thematique" data-reveals="autre-sous-thematique-field" required>
+                <label class="field__label" for="sous_thematique">Sous-thématique choisie <span class="required-star">*</span></label>
+                <select class="field__select" id="sous_thematique" name="sous_thematique" data-reveals="autre-sous-thematique-field" required onchange="const target = document.getElementById('autre-sous-thematique-field'); const input = document.getElementById('sous_thematique_autre'); if(this.value === 'autre'){ target.hidden = false; input.required = true; } else { target.hidden = true; input.required = false; input.value = ''; }">
                   <option value="" selected disabled>Sélectionnez</option>
                   <option value="culturelle">Aspects culturels</option>
                   <option value="academique">Aspects académiques</option>
@@ -204,11 +211,11 @@
                 </select>
               </div>
               <div class="field" id="autre-sous-thematique-field" hidden>
-                <label class="field__label" for="sous_thematique_autre">Précisez votre thématique</label>
+                <label class="field__label" for="sous_thematique_autre">Précisez votre thématique <span class="required-star">*</span></label>
                 <input class="field__input" type="text" id="sous_thematique_autre" name="sous_thematique_autre" placeholder="Votre propre angle">
               </div>
               <div class="field">
-                <label class="field__label" for="resume">Résumé de l'intervention (5 à 8 lignes)</label>
+                <label class="field__label" for="resume">Résumé de l'intervention (5 à 8 lignes) <span class="required-star">*</span></label>
                 <textarea class="field__textarea" id="resume" name="resume_intervention" style="min-height:160px;" placeholder="Présentez brièvement l'angle et le message de votre intervention." required></textarea>
               </div>
 
@@ -249,7 +256,7 @@
             <div data-step-panel hidden data-title="Validation" data-subtitle="Relisez votre inscription avant de la soumettre.">
               <label style="display:flex; align-items:flex-start; gap:12px; margin-top:8px; cursor:pointer;">
                 <input type="checkbox" name="engagement" required style="margin-top:4px;">
-                <span class="body-md" style="font-size:14px; color:var(--color-on-surface-variant);">Je certifie l'exactitude des informations fournies et je m'engage à me présenter si je suis présélectionné·e.</span>
+                <span class="body-md" style="font-size:14px; color:var(--color-on-surface-variant);">Je certifie l'exactitude des informations fournies et je m'engage à me présenter si je suis présélectionné·e. <span class="required-star">*</span></span>
               </label>
 
               <label style="display:flex; align-items:flex-start; gap:12px; margin-top:16px; cursor:pointer;">
@@ -339,5 +346,34 @@
 <script src="js/main.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="js/wizard.js"></script>
+
+<!-- Script de contrôle du passage d'étape dans le Wizard -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const nextBtns = document.querySelectorAll('[data-next-step]');
+  
+  nextBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const currentPanel = btn.closest('[data-step-panel]');
+      if (!currentPanel) return;
+
+      const inputs = currentPanel.querySelectorAll('input[required], select[required], textarea[required]');
+      let isValid = true;
+
+      inputs.forEach(input => {
+        if (!input.checkValidity()) {
+          isValid = false;
+          input.reportValidity();
+        }
+      });
+
+      if (!isValid) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      }
+    }, true);
+  });
+});
+</script>
 </body>
 </html>
