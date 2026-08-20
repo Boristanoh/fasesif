@@ -225,33 +225,154 @@
     });
   });
 
-  /* ---- Recap download (always available, works even offline) ---- */
+  /* ---- Human-readable labels for the PDF recap (mirrors Code.gs FIELD_LABELS) ---- */
+  var RECAP_FIELD_LABELS = {
+    prenom: "Prénom",
+    nom: "Nom",
+    nom_association: "Nom de l'association",
+    email: "Email",
+    telephone: "Téléphone",
+    date_naissance: "Date de naissance",
+    ville: "Ville",
+    statut: "Statut",
+    etablissement: "Établissement",
+    type_etablissement: "Type d'établissement",
+    filiere: "Filière",
+    moyenne: "Moyenne",
+    nombre_membres: "Nombre de membres",
+    message: "Message additionnel",
+    message_accompagnement: "Message d'accompagnement",
+    discipline: "Discipline",
+    date_soutenance: "Date de soutenance",
+    lien_travaux: "Lien vers les travaux",
+    sous_thematique: "Sous-thématique",
+    sous_thematique_autre: "Sous-thématique (précisée)",
+    resume_intervention: "Résumé de l'intervention",
+    engagement_participation: "Engagement à participer",
+    justificatif_scolarite: "Justificatif de scolarité",
+    releve_notes: "Relevé de notes",
+    justificatif_nationalite: "Justificatif de nationalité",
+    activites_phares: "Activités phares (ZIP)",
+    justificatifs_activites: "Justificatifs des activités",
+    note_presentation: "Note de présentation",
+    publications: "Publications / travaux",
+    lettre_recommandation: "Lettre de recommandation",
+    support_notes: "Support ou notes",
+  };
+
+  function recapLabel(key) {
+    return RECAP_FIELD_LABELS[key] || String(key).replace(/_/g, " ");
+  }
+
+  /* ---- Recap download: nicely formatted PDF (falls back to plain text
+     if the PDF library failed to load, e.g. no internet access) ---- */
   const downloadBtn = document.querySelector("[data-download-recap]");
   if (downloadBtn) {
     downloadBtn.addEventListener("click", () => {
       const form = document.querySelector("[data-wizard-form]");
       const data = form ? new FormData(form) : new FormData();
-      const categorieLabel = form ? form.dataset.categorieLabel : "";
-      let text = "GEEIF 3 · 2026 — Récapitulatif de candidature\n";
-      if (categorieLabel) text += "Catégorie : " + categorieLabel + "\n";
-      text += "03 octobre 2026 — Ritz Plazza, Bobigny\n\n";
+      const categorieLabel = (form && form.dataset.categorieLabel) || "";
+      const fileNameBase =
+        "recapitulatif-" + (categorieLabel || "candidature").toLowerCase()
+          .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+      const entries = [];
       for (const [key, value] of data.entries()) {
+        if (["engagement", "website", "secret", "categorie", "categorie_label"].includes(key)) continue;
         if (value instanceof File) {
-          if (value.name) text += `${key}: ${value.name}\n`;
+          if (value.name) entries.push([recapLabel(key), value.name]);
         } else if (value) {
-          text += `${key}: ${value}\n`;
+          entries.push([recapLabel(key), String(value)]);
         }
       }
-      const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "recapitulatif-candidature-gala-ivoire.txt";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+
+      if (window.jspdf && window.jspdf.jsPDF) {
+        downloadRecapAsPdf(categorieLabel, entries, fileNameBase);
+      } else {
+        downloadRecapAsText(categorieLabel, entries, fileNameBase);
+      }
     });
+  }
+
+  function downloadRecapAsPdf(categorieLabel, entries, fileNameBase) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: "pt", format: "a4" });
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const marginX = 48;
+    const contentWidth = pageWidth - marginX * 2;
+
+    function drawHeader() {
+      doc.setFillColor(113, 55, 0); // brand primary #713700
+      doc.rect(0, 0, pageWidth, 92, "F");
+      doc.setTextColor(255, 255, 255);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(18);
+      doc.text("FASESIF — GEEIF 3 · 2026", marginX, 38);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(12);
+      doc.text("Récapitulatif de candidature", marginX, 58);
+      if (categorieLabel) doc.text(categorieLabel, marginX, 76);
+    }
+
+    drawHeader();
+    doc.setTextColor(28, 28, 24);
+    let y = 130;
+
+    entries.forEach(([label, value]) => {
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(10.5);
+      const labelLines = doc.splitTextToSize(label + " :", contentWidth);
+      const valueLines = doc.splitTextToSize(value, contentWidth);
+      const blockHeight = (labelLines.length + valueLines.length) * 13 + 10;
+
+      if (y + blockHeight > pageHeight - 60) {
+        doc.addPage();
+        drawHeader();
+        doc.setTextColor(28, 28, 24);
+        y = 130;
+      }
+
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(113, 55, 0);
+      doc.text(labelLines, marginX, y);
+      y += labelLines.length * 13;
+
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(28, 28, 24);
+      doc.text(valueLines, marginX, y);
+      y += valueLines.length * 13 + 10;
+    });
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8.5);
+    doc.setTextColor(135, 115, 103);
+    doc.text(
+      "Généré le " + new Date().toLocaleString("fr-FR") + " — GEEIF 3, 03 octobre 2026, Ritz Plazza, Bobigny.",
+      marginX,
+      pageHeight - 30
+    );
+
+    doc.save(fileNameBase + ".pdf");
+  }
+
+  function downloadRecapAsText(categorieLabel, entries, fileNameBase) {
+    let text = "GEEIF 3 · 2026 — Récapitulatif de candidature\n";
+    if (categorieLabel) text += "Catégorie : " + categorieLabel + "\n";
+    text += "03 octobre 2026 — Ritz Plazza, Bobigny\n\n";
+    entries.forEach(([label, value]) => {
+      text += label + " : " + value + "\n";
+    });
+    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = fileNameBase + ".txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
 
   showStep(0);

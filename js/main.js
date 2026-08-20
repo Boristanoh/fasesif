@@ -44,14 +44,13 @@
     });
   });
 
-  /* ---- Upload zones: show selected filename ---- */
+  /* ---- Upload zones: show selected filename WITHOUT losing the
+     original "what is requested" title ---- */
   document.querySelectorAll("[data-upload]").forEach((zone) => {
     const input = zone.querySelector('input[type="file"]');
-    const label = zone.querySelector("[data-upload-label]");
     const hint = zone.querySelector("[data-upload-hint]");
     if (!input) return;
 
-    const defaultLabel = label ? label.textContent : "";
     const defaultHint = hint ? hint.textContent : "";
 
     zone.addEventListener("keydown", (e) => {
@@ -65,14 +64,36 @@
       if (input.files && input.files.length > 0) {
         const file = input.files[0];
         zone.classList.add("has-file");
-        if (label) label.textContent = file.name;
-        if (hint) hint.textContent = "Fichier ajouté \u2713";
+        // The label (what document is requested) is left untouched on
+        // purpose — only the hint line shows which file was picked, so
+        // the candidate never loses track of what was asked for.
+        if (hint) hint.textContent = "\u2713 " + file.name;
       } else {
         zone.classList.remove("has-file");
-        if (label) label.textContent = defaultLabel;
         if (hint) hint.textContent = defaultHint;
       }
     });
+  });
+
+  /* ---- Conditional "Autre" fields: a <select> with data-reveals="ID"
+     shows/requires the field #ID only when its value is "autre". Reusable
+     anywhere a category needs a free-text alternative to its options. ---- */
+  document.querySelectorAll("[data-reveals]").forEach((select) => {
+    const target = document.getElementById(select.getAttribute("data-reveals"));
+    if (!target) return;
+    const input = target.querySelector("input, textarea");
+
+    function sync() {
+      const show = select.value === "autre";
+      target.hidden = !show;
+      if (input) {
+        input.required = show;
+        if (!show) input.value = "";
+      }
+    }
+
+    select.addEventListener("change", sync);
+    sync();
   });
 
   /* ---- Contact form: send to Google Sheets via Apps Script (see config.js) ---- */
@@ -137,12 +158,12 @@
     });
   }
 
-  /* ---- Simple candidature form (single step, candidature.html) ---- */
+  /* ---- Simple candidature form (legacy single-step forms, if any) ---- */
   const simpleForm = document.querySelector("[data-simple-candidature-form]");
   if (simpleForm) {
     simpleForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      window.location.href = "merci.html";
+      window.location.href = "candidature.html";
     });
   }
 })();

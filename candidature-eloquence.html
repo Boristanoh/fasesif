@@ -194,13 +194,18 @@
               <h2 class="headline-md" style="font-size:16px; text-transform:uppercase; letter-spacing:0.06em; color:var(--color-primary); margin-top:32px; margin-bottom:20px;">Votre intervention</h2>
               <div class="field">
                 <label class="field__label" for="sous_thematique">Sous-thématique choisie</label>
-                <select class="field__select" id="sous_thematique" name="sous_thematique" required>
+                <select class="field__select" id="sous_thematique" name="sous_thematique" data-reveals="autre-sous-thematique-field" required>
                   <option value="" selected disabled>Sélectionnez</option>
                   <option value="culturelle">Aspects culturels</option>
                   <option value="academique">Aspects académiques</option>
                   <option value="diplomatique">Aspects diplomatiques</option>
                   <option value="socio-professionnelle">Aspects socio-professionnels</option>
+                  <option value="autre">Autre (précisez)</option>
                 </select>
+              </div>
+              <div class="field" id="autre-sous-thematique-field" hidden>
+                <label class="field__label" for="sous_thematique_autre">Précisez votre thématique</label>
+                <input class="field__input" type="text" id="sous_thematique_autre" name="sous_thematique_autre" placeholder="Votre propre angle">
               </div>
               <div class="field">
                 <label class="field__label" for="resume">Résumé de l'intervention (5 à 8 lignes)</label>
@@ -245,6 +250,11 @@
               <label style="display:flex; align-items:flex-start; gap:12px; margin-top:8px; cursor:pointer;">
                 <input type="checkbox" name="engagement" required style="margin-top:4px;">
                 <span class="body-md" style="font-size:14px; color:var(--color-on-surface-variant);">Je certifie l'exactitude des informations fournies et je m'engage à me présenter si je suis présélectionné·e.</span>
+              </label>
+
+              <label style="display:flex; align-items:flex-start; gap:12px; margin-top:16px; cursor:pointer;">
+                <input type="checkbox" name="engagement_participation" style="margin-top:4px;">
+                <span class="body-md" style="font-size:14px; color:var(--color-on-surface-variant);">Je souhaite m'engager à participer activement à la soirée du GEEIF 3, au-delà de ma prestation (optionnel).</span>
               </label>
 
               <div class="wizard-panel-footer">
@@ -327,6 +337,7 @@
 
 <script src="js/config.js"></script>
 <script src="js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="js/wizard.js"></script>
 </body>
 </html>
