@@ -12,13 +12,17 @@
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/components.css">
 <link rel="stylesheet" href="css/pages.css">
+
+<!-- AOS CSS -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 </head>
 <body>
 <a class="skip-link" href="#main">Aller au contenu</a>
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a href="index.html" class="site-header__logo">FASESIF</a>
+    <a href="index.html" class="site-header__logo"> <img src="assets/img/logo.jpg" alt=""> <span>FASESIF</span></a>
     <nav class="site-nav" data-nav>
       <a class="site-nav__link" href="index.html">Accueil</a>
       <a class="site-nav__link" href="a-propos.html">À Propos</a>
@@ -72,7 +76,7 @@
       <div class="category-grid">
 
         <!-- 01 — Étudiant -->
-        <div class="card category-card">
+        <div class="card category-card" data-aos="flip-up">
           <span class="category-card__number">01 · EXCELLENCE ACADÉMIQUE</span>
           <h3 class="headline-md category-card__title">Prix Meilleur·e Étudiant·e</h3>
           <p class="body-md category-card__desc">Récompense les étudiants ivoiriens inscrits en France en 2025–2026 qui se distinguent par l'excellence de leur parcours académique.</p>
@@ -101,7 +105,7 @@
         </div>
 
         <!-- 02 — Association -->
-        <div class="card category-card">
+        <div class="card category-card" data-aos="flip-down">
           <span class="category-card__number">02 · IMPACT COMMUNAUTAIRE</span>
           <h3 class="headline-md category-card__title">Prix Meilleure Association</h3>
           <p class="body-md category-card__desc">Distingue une association étudiante ivoirienne de France pour l'impact concret de ses actions durant l'année écoulée.</p>
@@ -128,7 +132,7 @@
         </div>
 
         <!-- 03 — Recherche -->
-        <div class="card category-card">
+        <div class="card category-card" data-aos="flip-up">
           <span class="category-card__number">03 · INNOVATION & SCIENCE</span>
           <h3 class="headline-md category-card__title">Prix Spécial Recherche</h3>
           <p class="body-md category-card__desc">Met en lumière un·e doctorant·e ou jeune chercheur·se ivoirien·ne, toutes disciplines confondues.</p>
@@ -155,7 +159,7 @@
         </div>
 
         <!-- 04 — Éloquence -->
-        <div class="card category-card">
+        <div class="card category-card" data-aos="flip-down">
           <span class="category-card__number">04 · PRISE DE PAROLE</span>
           <h3 class="headline-md category-card__title">Concours d'Éloquence</h3>
           <p class="body-md category-card__desc">Une performance orale de 3 à 5 minutes en français sur l'état des relations France–Afrique vues par la diaspora.</p>
@@ -210,5 +214,17 @@
 
 <script src="js/config.js"></script>
 <script src="js/main.js"></script>
+
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    once: false, // <-- Rejoue l'animation au scroll montant et descendant
+    easing: 'ease-out-cubic',
+  });
+</script>
+
 </body>
 </html>

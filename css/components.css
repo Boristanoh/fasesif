@@ -13,22 +13,48 @@
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-outline-variant);
 }
-
 .site-header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--gutter);
   padding-block: 20px;
+  flex-wrap: nowrap; /* Empêche le passage à la ligne des éléments */
 }
 
+.site-header__logo {
+  display: inline-flex;
+  align-items: center;  /* Aligne verticalement le texte et l'image */
+  gap: 12px;             /* Espace entre l'image et le texte */
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-primary);
+  text-decoration: none; /* Empêche le soulignement */
+}
+
+.site-header__logo img {
+  height: 40px; /* Réduit un chouïa la hauteur si c'est encore trop large */
+  width: auto;
+}
+
+/* 
 .site-header__logo {
   font-family: var(--font-display);
   font-size: 22px;
   font-weight: 700;
   letter-spacing: 0.02em;
   color: var(--color-primary);
+  
+} */
+ .site-header__logo img {
+  height: 48px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
 }
+
 
 .site-nav {
   display: flex;
@@ -121,9 +147,10 @@
   .site-nav .btn { 
     display: inline-flex; 
     margin-top: 12px; 
-    width: 100%; /* S'assure que le bouton prend la largeur si besoin */
+    width: 100%;
     justify-content: center;
   }
+   
 }
 
 /* ---- Buttons -------------------------------------------------------------- */

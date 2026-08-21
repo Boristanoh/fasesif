@@ -113,7 +113,7 @@
       if (!url) {
         if (feedback) {
           feedback.style.color = "var(--color-error)";
-          feedback.textContent = "Le site n'est pas encore connecté à Google Sheets. Configurez js/config.js (voir README.md).";
+          feedback.textContent = "Erreur lors de l'envoi de la candidature. Veuillez réessayer s'il vous plaît.";
         }
         return;
       }
