@@ -4,6 +4,28 @@
 
 (function () {
   "use strict";
+    /* ---- Candidatures closes : si APPS_SCRIPT_URL est vide, on redirige ---- */
+  const CLOSED_PAGE = "candidatures-closes.html";
+  const appsScriptUrl = (window.FASESIF_CONFIG && window.FASESIF_CONFIG.APPS_SCRIPT_URL) || "";
+
+  if (!appsScriptUrl) {
+    const currentPage = window.location.pathname.split("/").pop();
+
+    // 1) Accès direct à une page de formulaire (candidature-etudiant.html, etc.)
+    if (currentPage.startsWith("candidature-")) {
+      window.location.replace(CLOSED_PAGE);
+      return;
+    }
+
+    // 2) Clic sur un bouton ou lien « Postuler » (wizard ou liens vers les formulaires)
+    document.querySelectorAll('[data-start-wizard], a[href^="candidature-"]').forEach((el) => {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        window.location.href = CLOSED_PAGE;
+      });
+    });
+  }
 
   /* ---- Mobile nav toggle ---- */
   const toggle = document.querySelector("[data-nav-toggle]");

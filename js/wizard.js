@@ -5,6 +5,13 @@
 (function () {
   "use strict";
 
+    // 0. CANDIDATURES CLOSES : si APPS_SCRIPT_URL est vide, on redirige
+  const CLOSED_PAGE = "candidatures-closes.html";
+  if (!getAppsScriptUrl()) {
+    window.location.replace(CLOSED_PAGE);
+    return;
+  }
+
   // 1. INITIALISATION EMAILJS
   if (typeof emailjs !== 'undefined' && typeof EMAILJS_PUBLIC_KEY !== 'undefined') {
     emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -111,10 +118,15 @@
   // 4. ENVOI APPS SCRIPT (GOOGLE SHEETS / DRIVE)
   async function sendToAppsScript(payload) {
     const url = getAppsScriptUrl();
+    // if (!url) {
+    //   throw new Error(
+    //     "Le site n'est pas encore connecté à Google Sheets/Drive. Configurez l'URL dans js/config.js."
+    //   );
+    // }
+
     if (!url) {
-      throw new Error(
-        "Le site n'est pas encore connecté à Google Sheets/Drive. Configurez l'URL dans js/config.js."
-      );
+      window.location.replace(CLOSED_PAGE);
+      return new Promise(() => {}); // on attend la redirection, sans afficher d'erreur
     }
     const res = await fetch(url, {
       method: "POST",

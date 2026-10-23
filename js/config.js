@@ -18,8 +18,8 @@
    ========================================================================== */
 
 window.FASESIF_CONFIG = {
-  APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzQ5xS3Z7yjWHCc7iiA3WO0W7v0uDAtut1ih8umclhemkVNxItaAnDylfnN80Jy--P3/exec",
-  APPS_SCRIPT_SECRET: "cle_test"
+  APPS_SCRIPT_URL: "",
+  APPS_SCRIPT_SECRET: ""
 };
 
 
